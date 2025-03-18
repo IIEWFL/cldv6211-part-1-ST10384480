@@ -1,0 +1,27 @@
+﻿@model ST10384480_CLDV_Part1.Models.Venue
+@{
+    ViewData["Title"] = "Create Venue";
+}
+<h2>Create Venue</h2>
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Location"></label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Capacity"></label>
+        <input asp-for="Capacity" class="form-control" />
+        <span asp-validation-for="Capacity" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Venue Image</label>
+        <input type="file" name="imageFile" class="form-control-file" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Create</button>
+</form>

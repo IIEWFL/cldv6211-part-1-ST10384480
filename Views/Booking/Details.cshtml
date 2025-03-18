@@ -1,0 +1,9 @@
+﻿@model ST10384480_CLDV_Part1.Models.Booking
+@{
+    ViewData["Title"] = "Booking Details";
+}
+<h2>Booking Details</h2>
+<p><strong>Customer:</strong> @Model.CustomerName</p>
+<p><strong>Event:</strong> @Model.Event?.Name</p>
+<p><strong>Venue:</strong> @Model.Event?.Venue?.Name</p>
+<p><strong>Seats:</strong> @Model.NumberOfSeats</p>

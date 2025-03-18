@@ -1,0 +1,44 @@
+﻿@model ST10384480_CLDV_Part1.Models.Venue
+@{
+    ViewData["Title"] = "Venue Details";
+}
+<h2>@Model.Name</h2>
+<p><strong>Location:</strong> @Model.Location</p>
+<p><strong>Capacity:</strong> @Model.Capacity</p>
+@if (!string.IsNullOrEmpty(Model.ImagePath))
+{
+    <img src="@Model.ImagePath" alt="Venue Image" style="width:300px;" />
+}
+<h3>Events at this Venue</h3>
+@if (Model.Events != null && Model.Events.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var eventItem in Model.Events)
+            {
+                <tr>
+                    <td>@eventItem.Name</td>
+                    <td>@eventItem.StartDate.ToString("g")</td>
+                    <td>@eventItem.EndDate.ToString("g")</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Event", new { id = eventItem.Id })">Details</a>
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Event", new { id = eventItem.Id })">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Event", new { id = eventItem.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No events scheduled for this venue.</p>
+}

@@ -1,0 +1,24 @@
+﻿@model ST10384480_CLDV_Part1.Models.Booking
+@{
+    ViewData["Title"] = "Edit Booking";
+}
+<h2>Edit Booking</h2>
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="form-group">
+        <label asp-for="CustomerName"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EventId"></label>
+        @Html.DropDownListFor(model => model.EventId, new SelectList(ViewBag.Events, "Id", "Name"), "-- Select Event --", new { @class = "form-control" })
+        <span asp-validation-for="EventId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOfSeats"></label>
+        <input asp-for="NumberOfSeats" class="form-control" />
+        <span asp-validation-for="NumberOfSeats" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
+</form>

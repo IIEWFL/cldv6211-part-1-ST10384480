@@ -1,0 +1,39 @@
+﻿@model ST10384480_CLDV_Part1.Models.Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+<h2>@Model.Name</h2>
+<p><strong>Venue:</strong> @Model.Venue?.Name</p>
+<p><strong>Start Date:</strong> @Model.StartDate.ToString("g")</p>
+<p><strong>End Date:</strong> @Model.EndDate.ToString("g")</p>
+<h3>Bookings</h3>
+@if (Model.Bookings != null && Model.Bookings.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Seats</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model.Bookings)
+            {
+                <tr>
+                    <td>@booking.CustomerName</td>
+                    <td>@booking.NumberOfSeats</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Booking", new { id = booking.Id })">Details</a>
+                        <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Booking", new { id = booking.Id })">Edit</a>
+                        <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Booking", new { id = booking.Id })">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No bookings for this event.</p>
+}

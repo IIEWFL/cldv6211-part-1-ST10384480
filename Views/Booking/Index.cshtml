@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ST10384480_CLDV_Part1.Models.Booking>
+@{
+    ViewData["Title"] = "Bookings";
+}
+<h2>Bookings</h2>
+<a class="btn btn-success mb-2" href="@Url.Action("Create", "Booking")">Add New Booking</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Seats</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.CustomerName</td>
+                <td>@booking.Event?.Name</td>
+                <td>@booking.Event?.Venue?.Name</td>
+                <td>@booking.NumberOfSeats</td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="@Url.Action("Details", "Booking", new { id = booking.Id })">Details</a>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", "Booking", new { id = booking.Id })">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", "Booking", new { id = booking.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
